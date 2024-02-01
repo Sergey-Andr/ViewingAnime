@@ -5,7 +5,7 @@ import AnimeContent from "../../widgets/main/AnimeContent";
 
 const MainPage = () => {
     return (
-        <Box style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <Box sx={{ maxWidth: "1200px", margin: "0 auto", height: "100%" }}>
             <Header />
             <Box sx={{ display: "flex" }}>
                 <NavigationBar />

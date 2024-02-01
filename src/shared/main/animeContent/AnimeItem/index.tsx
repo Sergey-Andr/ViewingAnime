@@ -1,29 +1,29 @@
-import { Box } from "@mui/material";
-import { AnimeNames, AnimeSeries, Wrapper } from "./styled.ts";
+import { AnimeNames, ContainerImg, Wrapper } from "./styled.ts";
 import { FC } from "react";
+import { IElement } from "../../../../widgets/main/AnimeContent";
+import { Link } from "react-router-dom";
 
 interface IAnimeItem {
-    i: number;
-    el: { image: string, name: string; series: string };
+    el: IElement;
 }
 
-const AnimeItem: FC<IAnimeItem> = ({ i, el }) => {
+const AnimeItem: FC<IAnimeItem> = ({ el }) => {
+
+
     return (
-        <Wrapper
-            key={i}
-        >
-            <Box sx={{ position: "relative", height: "300px" }}>
-                <img style={{
-                    background: "linear-gradient(to bottom, rgba(17, 33, 46, 0.66) 0%, #11212e 800px), #6bb16e",
-                    width: "195px",
-                    height: "282px",
-                    padding: "5px",
-                }}
-                     src={el.image} alt={"Anime image"} />
-                <AnimeSeries
-                >{el.series} серия</AnimeSeries>
-            </Box>
-            <AnimeNames>{el.name}</AnimeNames>
+        <Wrapper>
+            <Link to={`/anime/${el.node.id}`}>
+                <ContainerImg>
+                    <img style={{
+                        border: "5px solid transparent",
+                        background: "linear-gradient(to bottom, rgba(17, 33, 46, 0.66) 0%, #11212e 800px), #6bb16e",
+                        width: "185px",
+                        height: "275px",
+                    }}
+                         src={el.node.main_picture.large} alt={"Anime image"} />
+                </ContainerImg>
+                <AnimeNames>{el.node.title}</AnimeNames>
+            </Link>
         </Wrapper>
     );
 };

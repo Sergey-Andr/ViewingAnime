@@ -44,7 +44,7 @@ const AnimeFilter: FC<IAnimeFilter> = ({ type, list, label, selectedOptions, onC
 
 
     return (
-        <Box sx={{ width: "100%", margin: "0px 15px" }}>
+        <Box sx={{ width: "100%", margin: "0px 15px", position: "relative", zIndex: "30" }}>
             <Select
                 components={{
                     Option: CustomOption,

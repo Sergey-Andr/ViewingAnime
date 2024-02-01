@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 import animeIcon from "../../../../../public/bg_w23.jpg";
 
 export const anime = [
