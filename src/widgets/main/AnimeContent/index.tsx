@@ -1,8 +1,22 @@
-import { anime, genres, sortBy, years } from "./config";
+import { genres, sortBy, years } from "./config";
 import { AnimeListContainer, FiltersContainer, Wrapper } from "./styled.ts";
 import AnimeFilter from "../../../shared/main/animeContent/AnimeFillters";
 import { SelectedOptionsStore } from "../../../store/Main/SelectedOptionsStore.ts";
 import AnimeItem from "../../../shared/main/animeContent/AnimeItem";
+import { useAnimeQuery } from "../../../hooks/queries/useAnime.ts";
+
+export interface IElement {
+    node: {
+        id: number,
+        title: string;
+        main_picture: {
+            medium: string;
+            large: string;
+        }
+    };
+    ranking: { rank: number };
+}
+
 
 const AnimeContent = () => {
 
@@ -23,6 +37,11 @@ const AnimeContent = () => {
             onChangeSortBy,
         }));
 
+    const { data, isLoading } = useAnimeQuery();
+
+    if (isLoading) {
+        return <div>Loading</div>;
+    }
 
     return (
         <Wrapper>
@@ -35,9 +54,9 @@ const AnimeContent = () => {
                              onChangeSelectedOptions={onChangeSortBy} />
             </FiltersContainer>
             <AnimeListContainer>
-                {anime.map((el, i) => {
+                {data?.map((el: IElement, i: number) => {
                     return (
-                        <AnimeItem i={i} el={el} />
+                        <AnimeItem key={i} el={el} />
                     );
                 })}
             </AnimeListContainer>

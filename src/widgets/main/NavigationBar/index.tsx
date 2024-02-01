@@ -6,8 +6,8 @@ import { Wrapper } from "./styled.ts";
 const NavigationBar = (): ReactElement => {
     return (
         <Wrapper>
-            {tabs.map((tab) => (
-                <NavigationTab tab={tab} />
+            {tabs.map((tab, i) => (
+                <NavigationTab key={i} tab={tab} />
             ))}
         </Wrapper>
     );
