@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { Dispatch, FC, memo, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { renderRatingStars } from "../../../feature/renderRatingStars";
 import {
     AboutAnime,
@@ -36,6 +36,25 @@ export interface IAnimeDetails {
 const AnimeDetailsHeader: FC<IAnimeDetails> = ({
                                                    data,
                                                }) => {
+
+    const defaultData = {
+        watchTime:Math.floor(data.average_episode_duration / 60),
+        year: data.start_date.slice(0, 4),
+        genres: data.genres.map((el, i) =>(
+                    <span key={el.name}>
+                        {el.name}
+                        {data.genres.length - 1 !== i && ", "}
+                    </span>
+                )
+            ),
+        studios: data.studios.map((el, i) =>(
+                    <span key={el.name}>
+                        {el.name}
+                        {data.studios.length - 1 !== i && ", "}
+                    </span>
+                )
+            )
+    }
 
     const [isOpened, setIsOpened]
         : [isOpened: boolean, setIsOpened: Dispatch<SetStateAction<boolean>>,]
@@ -76,13 +95,10 @@ const AnimeDetailsHeader: FC<IAnimeDetails> = ({
                     </ContainerRating>
                 </Box>
                 <ContainerInfo>
-                    <DefaultInfo>Просмотр: <span>{Math.floor(data.average_episode_duration / 60)} мин.</span></DefaultInfo>
-                    <DefaultInfo>Год выпуска: <span>{data.start_date.slice(0, 4)}</span></DefaultInfo>
-                    <DefaultInfo>Жанры: <span>{data.genres.map((el, id) =>
-                        data.genres.length - 1 !== id ? `${el.name}, ` : el.name,
-                    )}</span>
-                    </DefaultInfo>
-                    <DefaultInfo>Студия: <span>{data.studios[0].name}</span></DefaultInfo>
+                    <DefaultInfo>Просмотр: <span>{defaultData.watchTime} мин.</span></DefaultInfo>
+                    <DefaultInfo>Год выпуска: <span>{defaultData.year}</span></DefaultInfo>
+                    <DefaultInfo>Жанры: <span>{defaultData.genres}</span></DefaultInfo>
+                    <DefaultInfo>Студия: <span>{defaultData.studios}</span></DefaultInfo>
                 </ContainerInfo>
 
             </DefaultContainer>
@@ -105,4 +121,4 @@ const AnimeDetailsHeader: FC<IAnimeDetails> = ({
     );
 };
 
-export default memo(AnimeDetailsHeader);
+export default AnimeDetailsHeader;
