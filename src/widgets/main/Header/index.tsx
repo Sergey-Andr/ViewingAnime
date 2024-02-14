@@ -1,7 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
-import { SearchAnime, SignInContainer, Wrapper } from "./styled.ts";
+import { SignInContainer, Wrapper } from "./styled.ts";
 import { Link } from "react-router-dom";
 import { logo } from "../../../../public/logo.tsx";
+import SearchAnimeTab from "../../../shared/main/SearchAnime";
 
 const Header = () => {
     return (
@@ -13,8 +14,8 @@ const Header = () => {
                             style={{ fontFamily: "cursive", fontSize: "2.5em", margin: "13px 0" }}>AnimeGG</Typography>
             </Link>
             <Box>
-                <SearchAnime size="small" sx={{ width: "380px" }}
-                             placeholder={"Найти аниме..."} />
+                <SearchAnimeTab />
+
             </Box>
             <SignInContainer>
                 <img style={{ width: "15px", height: "15px" }}
