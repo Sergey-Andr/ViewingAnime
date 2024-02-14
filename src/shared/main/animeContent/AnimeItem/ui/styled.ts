@@ -1,5 +1,5 @@
 import { Box, styled, Typography } from "@mui/material";
-import playCircle from "../../../../../public/play-circle.svg";
+import playCircle from "../../../../../../public/play-circle.svg";
 
 export const Wrapper = styled(Box)(() => ({
     width: "205px",
