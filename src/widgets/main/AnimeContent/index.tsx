@@ -1,14 +1,15 @@
-import { CountPages, genres, sortBy, years } from "./config";
-import { AnimeListContainer, FiltersContainer, Loader, LoaderPulse, PagesButton, Wrapper } from "./styled.ts";
+import { genres, sortBy, years } from "./config";
+import { AnimeListContainer, FiltersContainer, Wrapper } from "./styled.ts";
 import AnimeFilter from "../../../shared/main/animeContent/AnimeFillters";
 import { SelectedOptionsStore } from "../../../store/Main/SelectedOptionsStore.ts";
 import AnimeItem from "../../../shared/main/animeContent/AnimeItem";
 import { useAnimeQuery } from "../../../hooks/queries/useAnime.ts";
 import { Box } from "@mui/material";
-import { logo } from "../../../../public/logo.tsx";
-import { memo, useEffect, useRef, useState } from "react";
+import { memo } from "react";
 import { animeContentStore } from "../../../store/Main/AnimeContentStore.ts";
 import { shallow } from "zustand/shallow";
+import InfiniteScroll from "react-infinite-scroll-component";
+import ScrollToTopButton from "../../../shared/main/ScrollToTopButton";
 
 export interface IElement {
     node: {
@@ -36,6 +37,7 @@ const AnimeContent = () => {
         offset,
         setOffset,
     }), shallow);
+
     const {
         genres: selectedGenres,
         onChangeGenre,
@@ -52,38 +54,16 @@ const AnimeContent = () => {
             sortBy,
             onChangeSortBy,
         }), shallow);
-    const { data, isLoading } = useAnimeQuery(offset);
 
-    console.log(data);
+    const { data } = useAnimeQuery(offset);
 
-    const options = {
-        root: document.querySelector("#observe"),
-        rootMargin: "0px 0px -1% 0px",
-        threshold: 0.5,
+    const scrollToTop = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+
+    const loadNextPage = () => {
+        setNewAnime(data);
+        setOffset();
     };
-    const observer = useRef();
-
-    useEffect(() => {
-        const callback = (entries: IntersectionObserverEntry[]) => {
-            console.log("data " + data);
-            console.log(offset); //offset всегда 0 при вызове калбека, разобратся почему
-
-            if (entries[0].isIntersecting) {
-                setNewAnime(data);
-                setOffset();
-            }
-        };
-        observer.current = new IntersectionObserver(callback, options);
-    }, [offset]);
-
-
-    useEffect(() => {
-        const target = document.getElementById("observe");
-
-        if (target) {
-            observer.observe(target);
-        }
-    }, [offset]);
     return (
         <Wrapper>
             <FiltersContainer>
@@ -96,16 +76,30 @@ const AnimeContent = () => {
             </FiltersContainer>
             <Box>
                 <AnimeListContainer>
-                    {([...totalAnime, ...(data ?? [])])?.map((el: IElement, i: number) => {
-                        return (
+                    <InfiniteScroll
+                        next={loadNextPage}
+                        hasMore={true}
+                        loader={<div></div>}
+                        scrollThreshold={0.9}
+                        dataLength={([...totalAnime, ...data ?? []]).length}
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(4,1fr)",
+                            gap: "30px",
+                            marginLeft: "30px",
+                        }}
+                    >
+                        {([...totalAnime, ...data ?? []])?.map((el: IElement, i: number) => (
                             <AnimeItem key={i} el={el} />
-                        );
-                    })}
+                        ))}
+                    </InfiniteScroll>
+                    {scrollToTop > windowHeight ?
+                        <ScrollToTopButton />
+                        :
+                        <></>
+                    }
                 </AnimeListContainer>
-                <Box id="observe" sx={{ width: "100%", height: "5px", background: "black" }}>
-                </Box>
             </Box>
-
         </Wrapper>
     );
 };

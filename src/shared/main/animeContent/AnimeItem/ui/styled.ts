@@ -57,3 +57,18 @@ export const AnimeNames = styled(Typography)(() => ({
     overflow: "hidden",
     textOverflow: "ellipsis",
 }));
+
+export const NoneImgContainer = styled(Box)(() => ({
+    border: "5px solid transparent",
+    background: "linear-gradient(to bottom, rgba(17, 33, 46, 0.66) 0%, #11212e 800px), #6bb16e",
+    width: "185px",
+    height: "275px",
+}));
+
+export const NoneImgText = styled(Typography)(() => ({
+    textAlign: "center",
+    lineHeight: "275px",
+    color: "white",
+    textDecoration: "none",
+    border: "none",
+}));

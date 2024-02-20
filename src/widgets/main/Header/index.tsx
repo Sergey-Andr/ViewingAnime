@@ -6,7 +6,7 @@ import SearchAnimeTab from "../../../shared/main/SearchAnime";
 
 const Header = () => {
     return (
-        <Wrapper>
+        <Wrapper id="header">
             <Link style={{ color: "#000000FF", textDecoration: "none", display: "flex", alignItems: "center" }}
                   to={"/"}>
                 <Typography sx={{ marginRight: "14px" }}> {logo}</Typography>

@@ -19,7 +19,6 @@ interface IAnimeContentStore {
 export const animeContentStore = createWithEqualityFn<IAnimeContentStore>()(immer((set) => ({
     totalAnime: [],
     setNewAnime: (newAnime) => set(produce((state) => {
-        console.log("newAnime " + newAnime);
         if (newAnime) {
             state.totalAnime.push(...newAnime);
         }
