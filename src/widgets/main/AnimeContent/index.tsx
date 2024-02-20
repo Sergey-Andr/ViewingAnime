@@ -4,6 +4,12 @@ import AnimeFilter from "../../../shared/main/animeContent/AnimeFillters";
 import { SelectedOptionsStore } from "../../../store/Main/SelectedOptionsStore.ts";
 import AnimeItem from "../../../shared/main/animeContent/AnimeItem";
 import { useAnimeQuery } from "../../../hooks/queries/useAnime.ts";
+import { Box } from "@mui/material";
+import { memo } from "react";
+import { animeContentStore } from "../../../store/Main/AnimeContentStore.ts";
+import { shallow } from "zustand/shallow";
+import InfiniteScroll from "react-infinite-scroll-component";
+import ScrollToTopButton from "../../../shared/main/ScrollToTopButton";
 
 export interface IElement {
     node: {
@@ -20,6 +26,18 @@ export interface IElement {
 
 const AnimeContent = () => {
 
+    const { totalAnime, setNewAnime, offset, setOffset } = animeContentStore(({
+                                                                                  totalAnime,
+                                                                                  setNewAnime,
+                                                                                  offset,
+                                                                                  setOffset,
+                                                                              }) => ({
+        totalAnime,
+        setNewAnime,
+        offset,
+        setOffset,
+    }), shallow);
+
     const {
         genres: selectedGenres,
         onChangeGenre,
@@ -35,14 +53,17 @@ const AnimeContent = () => {
             onChangeYear,
             sortBy,
             onChangeSortBy,
-        }));
+        }), shallow);
 
-    const { data, isLoading } = useAnimeQuery();
+    const { data } = useAnimeQuery(offset);
 
-    if (isLoading) {
-        return <div>Loading</div>;
-    }
+    const scrollToTop = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
 
+    const loadNextPage = () => {
+        setNewAnime(data);
+        setOffset();
+    };
     return (
         <Wrapper>
             <FiltersContainer>
@@ -53,16 +74,35 @@ const AnimeContent = () => {
                 <AnimeFilter label={"Сортировать по"} type={"sortBy"} list={sortBy} selectedOptions={selectedSortBy}
                              onChangeSelectedOptions={onChangeSortBy} />
             </FiltersContainer>
-            <AnimeListContainer>
-                {data?.map((el: IElement, i: number) => {
-                    return (
-                        <AnimeItem key={i} el={el} />
-                    );
-                })}
-            </AnimeListContainer>
+            <Box>
+                <AnimeListContainer>
+                    <InfiniteScroll
+                        next={loadNextPage}
+                        hasMore={true}
+                        loader={<div></div>}
+                        scrollThreshold={0.9}
+                        dataLength={([...totalAnime, ...data ?? []]).length}
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(4,1fr)",
+                            gap: "30px",
+                            marginLeft: "30px",
+                        }}
+                    >
+                        {([...totalAnime, ...data ?? []])?.map((el: IElement, i: number) => (
+                            <AnimeItem key={i} el={el} />
+                        ))}
+                    </InfiniteScroll>
+                    {scrollToTop > windowHeight ?
+                        <ScrollToTopButton />
+                        :
+                        <></>
+                    }
+                </AnimeListContainer>
+            </Box>
         </Wrapper>
     );
 };
 
 
-export default AnimeContent;
+export default memo(AnimeContent);

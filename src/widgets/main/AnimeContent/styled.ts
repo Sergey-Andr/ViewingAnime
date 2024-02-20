@@ -21,4 +21,3 @@ export const AnimeListContainer = styled(Box)(() => ({
     gridTemplateColumns: "repeat(4, 1fr)",
     gap: "10px 0px",
 }));
-

@@ -6,7 +6,6 @@ import { useGetCurrentAnimeQuery } from "../../hooks/queries/useGetCurrentAnime.
 import AnimeDetailsHeader from "../../widgets/animeDetailsPage/Header";
 
 const AnimeDetailsPage = () => {
-
     const { animeId } = useParams();
 
     const { data, isLoading } = useGetCurrentAnimeQuery(animeId ? +animeId : null);

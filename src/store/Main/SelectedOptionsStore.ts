@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
 
 export interface IOptions {
     label: string;
@@ -14,7 +14,7 @@ interface ISelectedOptionsStore {
     onChangeSortBy: (newOptions: IOptions[]) => void;
 }
 
-export const SelectedOptionsStore = create<ISelectedOptionsStore>((set) => ({
+export const SelectedOptionsStore = createWithEqualityFn<ISelectedOptionsStore>((set) => ({
     genres: [],
     year: [],
     sortBy: [],
