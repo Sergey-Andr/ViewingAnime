@@ -1,4 +1,6 @@
-import { create } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
+import { immer } from "zustand/middleware/immer";
+import { produce } from "immer";
 
 interface IAnime {
     node: { id: number, title: string; main_picture: { medium: string, large: string } };
@@ -10,11 +12,22 @@ interface IAnimeContentStore {
     setNewAnime: (newAnime: IAnime[]) => void;
     searchAnime: string;
     setSearchAnime: (newSearch: string) => void;
+    offset: number;
+    setOffset: () => void;
 }
 
-export const animeContentStore = create<IAnimeContentStore>((set) => ({
+export const animeContentStore = createWithEqualityFn<IAnimeContentStore>()(immer((set) => ({
     totalAnime: [],
-    setNewAnime: (newAnime) => set({ totalAnime: newAnime }),
+    setNewAnime: (newAnime) => set(produce((state) => {
+        console.log("newAnime " + newAnime);
+        if (newAnime) {
+            state.totalAnime.push(...newAnime);
+        }
+    })),
     searchAnime: "",
     setSearchAnime: (newSearch) => set({ searchAnime: newSearch }),
-}));
+    offset: 0,
+    setOffset: () => set((state) => ({
+        offset: state.offset + 20,
+    })),
+})));

@@ -6,7 +6,7 @@ import AnimeItem from "../../../shared/main/animeContent/AnimeItem";
 import { useAnimeQuery } from "../../../hooks/queries/useAnime.ts";
 import { Box } from "@mui/material";
 import { logo } from "../../../../public/logo.tsx";
-import { memo, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { animeContentStore } from "../../../store/Main/AnimeContentStore.ts";
 import { shallow } from "zustand/shallow";
 
@@ -25,11 +25,16 @@ export interface IElement {
 
 const AnimeContent = () => {
 
-    const [offset, setOffset] = useState(0);
-
-    const { totalAnime, setNewAnime } = animeContentStore(({ totalAnime, setNewAnime }) => ({
+    const { totalAnime, setNewAnime, offset, setOffset } = animeContentStore(({
+                                                                                  totalAnime,
+                                                                                  setNewAnime,
+                                                                                  offset,
+                                                                                  setOffset,
+                                                                              }) => ({
         totalAnime,
         setNewAnime,
+        offset,
+        setOffset,
     }), shallow);
     const {
         genres: selectedGenres,
@@ -46,13 +51,39 @@ const AnimeContent = () => {
             onChangeYear,
             sortBy,
             onChangeSortBy,
-        }));
-
+        }), shallow);
     const { data, isLoading } = useAnimeQuery(offset);
 
-    if (!isLoading) {
-        setNewAnime(data);
-    }
+    console.log(data);
+
+    const options = {
+        root: document.querySelector("#observe"),
+        rootMargin: "0px 0px -1% 0px",
+        threshold: 0.5,
+    };
+    const observer = useRef();
+
+    useEffect(() => {
+        const callback = (entries: IntersectionObserverEntry[]) => {
+            console.log("data " + data);
+            console.log(offset); //offset всегда 0 при вызове калбека, разобратся почему
+
+            if (entries[0].isIntersecting) {
+                setNewAnime(data);
+                setOffset();
+            }
+        };
+        observer.current = new IntersectionObserver(callback, options);
+    }, [offset]);
+
+
+    useEffect(() => {
+        const target = document.getElementById("observe");
+
+        if (target) {
+            observer.observe(target);
+        }
+    }, [offset]);
     return (
         <Wrapper>
             <FiltersContainer>
@@ -63,31 +94,17 @@ const AnimeContent = () => {
                 <AnimeFilter label={"Сортировать по"} type={"sortBy"} list={sortBy} selectedOptions={selectedSortBy}
                              onChangeSelectedOptions={onChangeSortBy} />
             </FiltersContainer>
-            {!isLoading ?
-                <Box>
-                    <AnimeListContainer>
-                        {totalAnime?.map((el: IElement, i: number) => {
-                            return (
-                                <AnimeItem key={i} el={el} />
-                            );
-                        })}
-                    </AnimeListContainer>
-                    <Box sx={{ width: "100%" }}>
-                        {CountPages.map((page) => (
-                            <PagesButton key={page.value} onClick={() => {
-                                setOffset(page.value * 20);
-                            }}>{page.label}</PagesButton>
-                        ))}
-                    </Box>
+            <Box>
+                <AnimeListContainer>
+                    {([...totalAnime, ...(data ?? [])])?.map((el: IElement, i: number) => {
+                        return (
+                            <AnimeItem key={i} el={el} />
+                        );
+                    })}
+                </AnimeListContainer>
+                <Box id="observe" sx={{ width: "100%", height: "5px", background: "black" }}>
                 </Box>
-                :
-                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "50%" }}>
-                    <Loader>
-                        <LoaderPulse />
-                        {logo}
-                    </Loader>
-                </Box>
-            }
+            </Box>
 
         </Wrapper>
     );
