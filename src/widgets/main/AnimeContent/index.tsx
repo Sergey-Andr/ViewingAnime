@@ -3,25 +3,13 @@ import { AnimeListContainer, FiltersContainer, Wrapper } from "./styled.ts";
 import AnimeFilter from "../../../shared/main/animeContent/AnimeFillters";
 import { SelectedOptionsStore } from "../../../store/Main/SelectedOptionsStore.ts";
 import AnimeItem from "../../../shared/main/animeContent/AnimeItem";
-import { useAnimeQuery } from "../../../hooks/queries/useAnime.ts";
+import { IListItem, useAnimeQuery } from "../../../hooks/queries/useAnime.ts";
 import { Box } from "@mui/material";
 import { memo } from "react";
 import { animeContentStore } from "../../../store/Main/AnimeContentStore.ts";
 import { shallow } from "zustand/shallow";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ScrollToTopButton from "../../../shared/main/ScrollToTopButton";
-
-export interface IElement {
-    node: {
-        id: number,
-        title: string;
-        main_picture: {
-            medium: string;
-            large: string;
-        }
-    };
-    ranking: { rank: number };
-}
 
 
 const AnimeContent = () => {
@@ -57,13 +45,13 @@ const AnimeContent = () => {
 
     const { data } = useAnimeQuery(offset);
 
-    const scrollToTop = document.documentElement.scrollHeight;
-    const windowHeight = window.innerHeight;
-
     const loadNextPage = () => {
         setNewAnime(data);
         setOffset();
     };
+
+    const scrollToTop = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
     return (
         <Wrapper>
             <FiltersContainer>
@@ -89,8 +77,8 @@ const AnimeContent = () => {
                             marginLeft: "30px",
                         }}
                     >
-                        {([...totalAnime, ...data ?? []])?.map((el: IElement, i: number) => (
-                            <AnimeItem key={i} el={el} />
+                        {([...totalAnime, ...data ?? []])?.map((item: IListItem, i: number) => (
+                            <AnimeItem key={i} item={item} />
                         ))}
                     </InfiniteScroll>
                     {scrollToTop > windowHeight ?

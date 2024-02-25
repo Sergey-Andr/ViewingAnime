@@ -1,8 +1,12 @@
 import { AboutAnime, ContainerSubTitle, ExtandSubTitle, SubTitle } from "./styled.ts";
 import { Dispatch, FC, ReactElement, SetStateAction, useState } from "react";
-import { IAnimeDetails } from "../../../widgets/animeDetailsPage/Header";
+import { ISpecifyAnime } from "../../../hooks/queries/useGetCurrentAnime.ts";
 
-const WhatAboutAnime: FC<IAnimeDetails> = ({ data }): ReactElement => {
+interface IWhatAboutAnime {
+    data: ISpecifyAnime;
+}
+
+const WhatAboutAnime: FC<IWhatAboutAnime> = ({ data }): ReactElement => {
 
     const [isOpened, setIsOpened]: [
         isOpened: boolean,

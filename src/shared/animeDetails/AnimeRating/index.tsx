@@ -2,9 +2,13 @@ import { Box, Typography } from "@mui/material";
 import { AnimeNumEpisodes, AnimeRating, AnimeTitle, ContainerRating } from "./styled.ts";
 import { renderRatingStars } from "../../../feature/renderRatingStars";
 import { FC, ReactElement } from "react";
-import { IAnimeDetails } from "../../../widgets/animeDetailsPage/Header";
+import { ISpecifyAnime } from "../../../hooks/queries/useGetCurrentAnime.ts";
 
-const AnimeInfoRating: FC<IAnimeDetails> = ({ data }): ReactElement => {
+interface IAnimeInfoRating {
+    data: ISpecifyAnime;
+}
+
+const AnimeInfoRating: FC<IAnimeInfoRating> = ({ data }): ReactElement => {
     return (
         <Box
             sx={{
