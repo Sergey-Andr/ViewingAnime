@@ -1,25 +1,12 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { DefaultContainer, Wrapper } from "./styled.ts";
 import AnimeInfo from "../../../shared/animeDetails/AnimeInfo";
 import AnimeInfoRating from "../../../shared/animeDetails/AnimeRating";
 import WhatAboutAnime from "../../../shared/animeDetails/WhatAboutAnime";
+import { ISpecifyAnime } from "../../../hooks/queries/useGetCurrentAnime.ts";
 
-export interface IAnimeDetails {
-    data: {
-        main_picture: { medium: string; large: string };
-        average_episode_duration: number;
-        title: string;
-        popularity: number;
-        mean: number;
-        start_date: string;
-        created_at: string;
-        filmMaker: string;
-        genres: { id: number; name: string }[];
-        studios: { id: number; name: string }[];
-        pictures: { medium: string; large: string }[];
-        synopsis: string;
-        num_episodes: number;
-    };
+interface IAnimeDetails {
+    data: ISpecifyAnime;
 }
 
 const AnimeDetailsHeader: FC<IAnimeDetails> = ({ data }) => {
@@ -53,4 +40,4 @@ const AnimeDetailsHeader: FC<IAnimeDetails> = ({ data }) => {
     );
 };
 
-export default AnimeDetailsHeader;
+export default memo(AnimeDetailsHeader);

@@ -1,19 +1,20 @@
 import { AnimeNames, ContainerImg, NoneImgContainer, NoneImgText, Wrapper } from "./ui/styled.ts";
 import { FC, memo } from "react";
-import { IElement } from "../../../../widgets/main/AnimeContent";
 import { Link } from "react-router-dom";
+import { IListItem } from "../../../../hooks/queries/useAnime.ts";
 
 interface IAnimeItem {
-    el: IElement;
+    item: IListItem;
 }
 
-const AnimeItem: FC<IAnimeItem> = ({ el }) => {
+
+const AnimeItem: FC<IAnimeItem> = ({ item }) => {
     return (
         <Wrapper>
-            <Link to={`/anime/${el.node?.id}`}
+            <Link to={`/anime/${item.node?.id}`}
                   style={{ textDecoration: "none" }}
             >
-                {el.node?.main_picture?.large ?
+                {item.node?.main_picture?.large ?
                     <ContainerImg>
                         <img style={{
                             border: "5px solid transparent",
@@ -21,7 +22,7 @@ const AnimeItem: FC<IAnimeItem> = ({ el }) => {
                             width: "185px",
                             height: "275px",
                         }}
-                             src={el.node?.main_picture?.large} alt={"Anime image"} />
+                             src={item.node?.main_picture?.large} alt={"Anime image"} />
                     </ContainerImg>
                     :
                     <NoneImgContainer>
@@ -30,7 +31,7 @@ const AnimeItem: FC<IAnimeItem> = ({ el }) => {
                         </NoneImgText>
                     </NoneImgContainer>
                 }
-                <AnimeNames>{el.node?.title}</AnimeNames>
+                <AnimeNames>{item.node?.title}</AnimeNames>
             </Link>
         </Wrapper>
     );

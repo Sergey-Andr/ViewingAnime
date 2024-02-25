@@ -19,12 +19,10 @@ export const Wrapper = styled(Box)(() => ({
 
 export const DefaultContainer = styled(Box)(() => ({
     position: "relative",
-    zIndex: "100",
+    zIndex: "20",
     color: "#fff",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     margin: "50px 0",
 }));
-
-

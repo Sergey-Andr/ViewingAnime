@@ -4,6 +4,7 @@ import NavigationBar from "../../widgets/main/NavigationBar";
 import { useParams } from "react-router-dom";
 import { useGetCurrentAnimeQuery } from "../../hooks/queries/useGetCurrentAnime.ts";
 import AnimeDetailsHeader from "../../widgets/animeDetailsPage/Header";
+import { memo } from "react";
 
 const AnimeDetailsPage = () => {
     const { animeId } = useParams();
@@ -17,8 +18,6 @@ const AnimeDetailsPage = () => {
                 <NavigationBar />
 
                 {!isLoading ?
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-expect-error
                     <AnimeDetailsHeader data={data} />
                     : <>Loading</>}
             </Box>
@@ -26,4 +25,4 @@ const AnimeDetailsPage = () => {
     );
 };
 
-export default AnimeDetailsPage;
+export default memo(AnimeDetailsPage);

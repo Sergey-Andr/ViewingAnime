@@ -15,7 +15,6 @@ const Header = () => {
             </Link>
             <Box>
                 <SearchAnimeTab />
-
             </Box>
             <SignInContainer>
                 <img style={{ width: "15px", height: "15px" }}

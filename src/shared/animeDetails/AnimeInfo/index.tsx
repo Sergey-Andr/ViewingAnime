@@ -1,14 +1,18 @@
 import { ContainerInfo, ItemInfo } from "./styled.ts";
-import { IAnimeDetails } from "../../../widgets/animeDetailsPage/Header";
 import { FC, ReactElement } from "react";
+import { ISpecifyAnime } from "../../../hooks/queries/useGetCurrentAnime.ts";
 
-const AnimeInfo: FC<IAnimeDetails> = ({ data }): ReactElement => {
+interface IAnimeInfo {
+    data: ISpecifyAnime;
+}
+
+const AnimeInfo: FC<IAnimeInfo> = ({ data }): ReactElement => {
     return (
         <ContainerInfo>
             <ItemInfo>
                 Watching:{" "}
                 <span>
-                    {Math.floor(data.average_episode_duration === 0 ? 1440 / 60 : data.average_episode_duration / 60)} мин.
+                    {Math.floor(data.average_episode_duration === 0 ? 1440 / 60 : data.average_episode_duration / 60)}m per ep.
                 </span>
             </ItemInfo>
             <ItemInfo>

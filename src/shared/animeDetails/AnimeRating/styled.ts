@@ -27,7 +27,7 @@ export const AnimeRating = styled(Typography)(() => ({
     textAlign: "center",
     margin: "0 0 0 10px",
     border: "1px solid #ffcc00",
-    width: "24px",
+    width: "fit-content",
     height: "24px",
     padding: "8px",
     borderRadius: "50%",
