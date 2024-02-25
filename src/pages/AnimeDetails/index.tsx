@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
-import Header from "../../widgets/main/Header";
-import NavigationBar from "../../widgets/main/NavigationBar";
+import Header from "../../components/mainPage/Header";
+import NavigationBar from "../../components/mainPage/NavigationBar";
 import { useParams } from "react-router-dom";
 import { useGetCurrentAnimeQuery } from "../../hooks/queries/useGetCurrentAnime.ts";
-import AnimeDetailsHeader from "../../widgets/animeDetailsPage/Header";
+import AnimeDetailsHeader from "../../components/animeDetailsPage/Header";
 import { memo } from "react";
 
 const AnimeDetailsPage = () => {
