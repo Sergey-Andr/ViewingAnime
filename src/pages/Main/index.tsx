@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import Header from "../../widgets/main/Header";
-import NavigationBar from "../../widgets/main/NavigationBar";
-import AnimeContent from "../../widgets/main/AnimeContent";
+import Header from "../../components/mainPage/Header";
+import NavigationBar from "../../components/mainPage/NavigationBar";
+import AnimeContent from "../../components/mainPage/animeContent";
 
 const MainPage = () => {
     return (

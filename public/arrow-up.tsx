@@ -1,4 +1,4 @@
-export const ArrowUp = ({ color }) => (
+export const ArrowUp = ({ color }: { color: string }) => (
     <svg width="35px" height="35px" viewBox="0 -4.5 20 20" version="1.1"
          xmlns="http://www.w3.org/2000/svg">
         <g stroke="none" fill="none">
