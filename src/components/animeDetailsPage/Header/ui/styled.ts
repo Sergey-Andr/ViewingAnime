@@ -1,38 +1,33 @@
 import { Box, Button, Collapse, styled, Typography } from "@mui/material";
 
 export const Wrapper = styled(Box)(() => ({
-    width: "960px",
+    width: "100%",
     height: "fit-content",
-    padding: "0 0 50px 0",
-    position: "relative",
-    ":before": {
-        content: "''",
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        background: "#00000099",
-        boxShadow: "inset 0px 0px 200px #11212EFF",
-    },
+    marginBottom: "15px",
 }));
 
-export const DefaultContainer = styled(Box)(() => ({
-    position: "relative",
-    zIndex: "20",
-    color: "#fff",
+export const ContainerTitle = styled(Box)(() => ({
     display: "flex",
-    justifyContent: "space-between",
     alignItems: "center",
-    margin: "50px 0",
+    marginBottom: "15px",
 }));
 
-export const ContainerInfo = styled(Box)(() => ({
-    background: "#09161c",
-    padding: "25px 0 0 15px",
-    width: "230px",
-    height: "270px",
-    borderRadius: "15px 0px 0px 15px",
+export const AnimeTitle = styled(Typography)(() => ({
+    fontSize: "22px",
+    color: "#fff",
+    fontFamily: "sans-serif",
+}));
+
+export const AnimeDate = styled(Typography)(() => ({
+    fontSize: "20px",
+    fontFamily: "sans-serif",
+    color: "#D7D7D7CC",
+}));
+
+export const Hr = styled(Box)(() => ({
+    width: "calc(100% - 15px)",
+    height: "2px",
+    background: "#D7D7D7CC",
 }));
 
 export const ItemInfo = styled(Box)(() => ({
@@ -46,15 +41,6 @@ export const ItemInfo = styled(Box)(() => ({
         color: "#df565a",
         fontSize: "16px",
     },
-}));
-
-export const AnimeTitle = styled(Typography)(() => ({
-    margin: "0 0 15px 0",
-    width: "380px",
-    top: "0",
-    fontSize: "22px",
-    fontWeight: "700",
-    fontFamily: "sans-serif",
 }));
 
 export const ContainerRating = styled(Box)(() => ({

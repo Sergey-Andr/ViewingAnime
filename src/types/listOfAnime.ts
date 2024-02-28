@@ -3,13 +3,15 @@ export interface IListOfAnime {
 }
 
 export interface IListItem {
-    node: {
-        id: number,
-        title: string;
-        main_picture: {
-            medium: string;
-            large: string;
-        }
-    };
+    node: IDefaultIListItem;
     ranking: { rank: number };
+}
+
+export interface IDefaultIListItem {
+    id: number;
+    title: string;
+    main_picture: {
+        medium: string;
+        large: string;
+    };
 }
