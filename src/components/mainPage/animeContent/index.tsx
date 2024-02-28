@@ -9,24 +9,18 @@ import { shallow } from "zustand/shallow";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
-
 const AnimeContent = () => {
-
-    const { totalAnime, setNewAnime, offset, setOffset } = animeGlobalStore(({
-                                                                                 totalAnime,
-                                                                                 setNewAnime,
-                                                                                 offset,
-                                                                                 setOffset,
-                                                                             }) => ({
-        totalAnime,
-        setNewAnime,
-        offset,
-        setOffset,
-    }), shallow);
+    const { totalAnime, setNewAnime, offset, setOffset } = animeGlobalStore(
+        ({ totalAnime, setNewAnime, offset, setOffset }) => ({
+            totalAnime,
+            setNewAnime,
+            offset,
+            setOffset,
+        }),
+        shallow,
+    );
 
     const { data } = useAnimeQuery(offset);
-
-    console.log(data);
 
     const loadNextPage = () => {
         setNewAnime(data as unknown as IListItem[]);
@@ -42,9 +36,16 @@ const AnimeContent = () => {
                     <InfiniteScroll
                         next={loadNextPage}
                         hasMore={true}
-                        loader={<div></div>}
+                        loader={Array.from({ length: 20 }, (_, i) => (
+                            <AnimeItem key={i} />
+                        ))}
                         scrollThreshold={0.9}
-                        dataLength={([...totalAnime, ...(data as unknown as IListItem[]) ?? []]).length}
+                        dataLength={
+                            [
+                                ...totalAnime,
+                                ...((data as unknown as IListItem[]) ?? []),
+                            ].length
+                        }
                         style={{
                             display: "grid",
                             gridTemplateColumns: "repeat(4,1fr)",
@@ -52,20 +53,18 @@ const AnimeContent = () => {
                             marginLeft: "30px",
                         }}
                     >
-                        {([...totalAnime, ...(data as unknown as IListItem[]) ?? []])?.map((item: IListItem, i: number) => (
+                        {[
+                            ...totalAnime,
+                            ...((data as unknown as IListItem[]) ?? []),
+                        ]?.map((item: IListItem, i: number) => (
                             <AnimeItem key={i} item={item} />
                         ))}
                     </InfiniteScroll>
-                    {scrollToTop > windowHeight ?
-                        <ScrollToTopButton />
-                        :
-                        <></>
-                    }
+                    {scrollToTop > windowHeight ? <ScrollToTopButton /> : <></>}
                 </AnimeListContainer>
             </Box>
         </WrapperContent>
     );
 };
-
 
 export default memo(AnimeContent);
