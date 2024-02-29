@@ -1,17 +1,10 @@
 import { Box, styled, Typography } from "@mui/material";
-import playCircle from "../../../../../public/play-circle.svg";
+import { FaRegCirclePlay } from "react-icons/fa6";
 
 export const WrapperContent = styled(Box)(() => ({
-    background: "linear-gradient(to bottom, rgba(17, 33, 46, 0.66) 0%, #11212e 800px), #0e6655",
+    background:
+        "linear-gradient(to bottom, rgba(17, 33, 46, 0.66) 0%, #11212e 800px), #0e6655",
     width: "100%",
-}));
-
-export const AnimeListContainer = styled(Box)(() => ({
-    width: "100%",
-    display: "grid",
-    justifyItems: "center",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: "10px 0px",
 }));
 
 export const WrapperItem = styled(Box)(() => ({
@@ -21,7 +14,6 @@ export const WrapperItem = styled(Box)(() => ({
     alignItems: "center",
     flexDirection: "column",
     paddingTop: "5px",
-
 }));
 
 export const ContainerImg = styled(Box)(() => ({
@@ -44,7 +36,7 @@ export const ContainerImg = styled(Box)(() => ({
     },
 
     "&:after": {
-        content: `url(${playCircle})`,
+        content: "''",
         position: "absolute",
         top: "50%",
         left: "50%",
@@ -59,7 +51,6 @@ export const ContainerImg = styled(Box)(() => ({
     },
 }));
 
-
 export const AnimeNames = styled(Typography)(() => ({
     fontSize: "18px",
     marginTop: "8px",
@@ -73,7 +64,8 @@ export const AnimeNames = styled(Typography)(() => ({
 
 export const NoneImgContainer = styled(Box)(() => ({
     border: "5px solid transparent",
-    background: "linear-gradient(to bottom, rgba(17, 33, 46, 0.66) 0%, #11212e 800px), #6bb16e",
+    background:
+        "linear-gradient(to bottom, rgba(17, 33, 46, 0.66) 0%, #11212e 800px), #6bb16e",
     width: "185px",
     height: "275px",
 }));

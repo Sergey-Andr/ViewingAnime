@@ -4,6 +4,7 @@ import AlternativeTitles from "./AlternativeTitles";
 import RelatedAnime from "./RelatedAnime";
 import { WrapperSummary } from "../../ui/styled.ts";
 import RelatedSeasons from "./RelatedSeasons";
+import { memo } from "react";
 
 const AnimeSummary = () => {
     return (
@@ -17,4 +18,4 @@ const AnimeSummary = () => {
     );
 };
 
-export default AnimeSummary;
+export default memo(AnimeSummary);

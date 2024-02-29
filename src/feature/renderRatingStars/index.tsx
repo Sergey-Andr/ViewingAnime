@@ -1,5 +1,4 @@
-import { Star } from "../../../public/star.tsx";
-import { HalfStar } from "../../../public/half-star.tsx";
+import { FaRegStarHalfStroke, FaStar } from "react-icons/fa6";
 
 export const renderRatingStars = (rating = 0) => {
     const fullStars = Math.floor(rating);
@@ -10,16 +9,43 @@ export const renderRatingStars = (rating = 0) => {
         const stars = [];
 
         for (let i = 0; i < fullStars; i++) {
-            stars.push(Star("ffcc00", `field-${i}`));
+            stars.push(
+                <FaStar
+                    fill={"#ffcc00"}
+                    style={{
+                        width: "25px",
+                        height: "25px",
+                        marginRight: "2px",
+                    }}
+                />,
+            );
         }
 
         if (hasHalfStar) {
-            stars.push(HalfStar("ffcc00", "FFFFFF99", `key-half`));
+            stars.push(
+                <FaRegStarHalfStroke
+                    fill={"#ffcc00"}
+                    style={{
+                        width: "27px",
+                        height: "27px",
+                        marginRight: "2px",
+                    }}
+                />,
+            );
         }
 
         const remainingStars = maxRating - Math.ceil(rating);
         for (let i = 0; i < remainingStars; i++) {
-            stars.push(Star("FFFFFF99", `empty-${i}`));
+            stars.push(
+                <FaStar
+                    fill={"#FFFFFF99"}
+                    style={{
+                        width: "25px",
+                        height: "25px",
+                        marginRight: "2px",
+                    }}
+                />,
+            );
         }
 
         return stars;

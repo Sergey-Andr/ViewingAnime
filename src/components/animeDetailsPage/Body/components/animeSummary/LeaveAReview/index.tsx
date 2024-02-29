@@ -1,19 +1,11 @@
 import SelectRating from "../SelectRating";
-import { GlobalContainerMain, Hr } from "../../../ui/styled.ts";
+import { Hr, ReviewWrapper } from "../../../ui/styled.ts";
 import { memo } from "react";
 import WatchStatus from "../WatchStatus";
 
 const LeaveAReview = () => {
     return (
-        <GlobalContainerMain
-            sx={{
-                maxWidth: "100%",
-                background: "linear-gradient(0deg, #ebebf1 0%, #eff3f6 100%)",
-                border: "2px solid #c9cdd3",
-                boxSizing: "border-box",
-                padding: "16px",
-            }}
-        >
+        <ReviewWrapper>
             <WatchStatus />
             <Hr
                 sx={{
@@ -22,7 +14,7 @@ const LeaveAReview = () => {
                 }}
             />
             <SelectRating />
-        </GlobalContainerMain>
+        </ReviewWrapper>
     );
 };
 

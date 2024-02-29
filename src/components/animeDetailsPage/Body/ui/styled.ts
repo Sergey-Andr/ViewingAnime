@@ -9,7 +9,7 @@ export const WrapperSummary = styled(Box)(() => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    maxWidth: "570px",
+    maxWidth: "825px",
     marginRight: "15px",
 }));
 
@@ -53,6 +53,17 @@ export const GlobalContentMain = styled(Typography)(() => ({
     color: "#D7D7D7CC",
 }));
 
+export const ReviewWrapper = styled(Box)(() => ({
+    borderRadius: "5px",
+    height: "fit-content",
+    width: "100%",
+    marginBottom: "20px",
+    background: "linear-gradient(0deg, #ebebf1 0%, #eff3f6 100%)",
+    border: "2px solid #c9cdd3",
+    boxSizing: "border-box",
+    padding: "16px",
+}));
+
 export const RatingWrapper = styled(Box)(() => ({
     display: "flex",
     alignItems: "center",
@@ -85,7 +96,6 @@ export const StatisticWrapper = styled(Box)(() => ({
 export const AnimeListWrapper = styled(Box)(() => ({
     display: "grid",
     gridTemplateColumns: "repeat(4,1fr)",
-    gap: "30px",
     marginBottom: "15px",
 }));
 

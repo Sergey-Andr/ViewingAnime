@@ -32,6 +32,9 @@ const AnimeList: FC<IAnimeList> = ({ data }) => {
                         style={{
                             cursor: "pointer",
                             textDecoration: "none",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
                         }}
                     >
                         <img
@@ -40,6 +43,7 @@ const AnimeList: FC<IAnimeList> = ({ data }) => {
                             style={{
                                 width: "125px",
                                 height: "176px",
+                                marginBottom: "15px",
                             }}
                         />
                         <AnimeListTitle>{anime.node.title}</AnimeListTitle>

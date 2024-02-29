@@ -1,19 +1,19 @@
 import { Box, Tooltip } from "@mui/material";
 import { GlobalContentMain, GlobalTitleMain } from "../../../ui/styled.ts";
-import { FC, memo, ReactNode } from "react";
+import { FC, memo, ReactElement, ReactNode } from "react";
 
 interface IAnimeStatus {
-    imgPath: ReactNode;
+    icon: ReactNode;
     label: string;
     status?: number;
 }
 
-const AnimeStatus: FC<IAnimeStatus> = ({ imgPath, label, status = 0 }) => {
+const AnimeStatus: FC<IAnimeStatus> = ({ icon, label, status = 0 }) => {
     const stat = +status;
     return (
         <Tooltip
             arrow={true}
-            title={label}
+            title={label ? label : "..."}
             PopperProps={{
                 sx: {
                     ".MuiTooltip-tooltip": {
@@ -33,7 +33,7 @@ const AnimeStatus: FC<IAnimeStatus> = ({ imgPath, label, status = 0 }) => {
             }}
         >
             <Box>
-                <GlobalTitleMain>{imgPath}</GlobalTitleMain>
+                {icon}
                 <GlobalContentMain>
                     {stat.toLocaleString("en")}
                 </GlobalContentMain>

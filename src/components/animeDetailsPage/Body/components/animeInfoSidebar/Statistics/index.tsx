@@ -5,13 +5,19 @@ import {
 } from "../../../ui/styled.ts";
 import { memo } from "react";
 import AnimeStatus from "../AnimeStatus";
-import { triangleIcon } from "../../../../../../../public/triangle.tsx";
-import { eyeIcon } from "../../../../../../../public/eye.tsx";
-import { pauseIcon } from "../../../../../../../public/pause.tsx";
-import { bloodIcon } from "../../../../../../../public/blood.tsx";
-import { doubleCheckMarksIcon } from "../../../../../../../public/doubleCheckMarks.tsx";
+import triangleIcon from "../../../../../../../public/triangle.svg?react";
+import EyeIcon from "../../../../../../../public/eye.svg?react";
+import PauseIcon from "../../../../../../../public/pause.svg?react";
+import BloodIcon from "../../../../../../../public/blood.svg?react";
+import DoubleCheckMarksIcon from "../../../../../../../public/doubleCheckMarks.svg?react";
 import { useParams } from "react-router-dom";
 import { useGetCurrentAnimeQuery } from "../../../../../../hooks/queries/useGetCurrentAnime.ts";
+import styled from "styled-components";
+
+export const TriangleIcon = styled(triangleIcon)``;
+import { SvgIcon } from "@mui/material";
+import { FaCheckDouble, FaEye, FaPause, FaPlay } from "react-icons/fa6";
+import { MdOutlineWaterDrop } from "react-icons/md";
 
 const Statistics = () => {
     const { animeId } = useParams();
@@ -24,30 +30,75 @@ const Statistics = () => {
             </GlobalLabelMain>
             <StatisticWrapper>
                 <AnimeStatus
-                    imgPath={triangleIcon({ color: "#7838bf" })}
+                    icon={
+                        <FaPlay
+                            style={{
+                                width: "30px",
+                                height: "30px",
+                                fill: "#7838bf",
+                            }}
+                        />
+                    }
                     status={data?.statistics.status.watching}
                     label={"watching"}
                 />
+
                 <AnimeStatus
-                    imgPath={eyeIcon({ color: "#267dcf" })}
+                    icon={
+                        <FaEye
+                            style={{
+                                width: "30px",
+                                height: "30px",
+                                fill: "#267dcf",
+                            }}
+                        />
+                    }
                     status={data?.statistics.status.plan_to_watch}
                     label={"plan to watch"}
                 />
+
                 <AnimeStatus
-                    imgPath={pauseIcon({ color: "#c7911f" })}
+                    icon={
+                        <FaPause
+                            style={{
+                                strokeWidth: "3",
+                                width: "30px",
+                                height: "30px",
+                                fill: "#cfa54d",
+                            }}
+                        />
+                    }
                     status={data?.statistics.status.on_hold}
                     label={"pause"}
                 />
+
                 <AnimeStatus
-                    imgPath={bloodIcon({ color: "#e5334a" })}
+                    icon={
+                        <MdOutlineWaterDrop
+                            style={{
+                                fill: "#e5334a",
+                                height: "30px",
+                                width: "30px",
+                            }}
+                        />
+                    }
                     status={data?.statistics.status.dropped}
                     label={"dropped"}
-                />
+                ></AnimeStatus>
+
                 <AnimeStatus
-                    imgPath={doubleCheckMarksIcon({ color: "#00b021" })}
+                    icon={
+                        <FaCheckDouble
+                            style={{
+                                fill: "#00b021",
+                                height: "30px",
+                                width: "30px",
+                            }}
+                        />
+                    }
                     status={data?.statistics.status.completed}
                     label={"completed"}
-                />
+                ></AnimeStatus>
             </StatisticWrapper>
         </GlobalContainerMain>
     );
