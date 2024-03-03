@@ -3,9 +3,9 @@ import { AspectRatio } from "@mui/joy";
 
 export const ContainerArrows = styled(Box)(() => ({
     position: "absolute",
-    top: "-15%",
+    top: "10%",
     width: "100%",
-    height: "100%",
+    height: "50%",
     display: "flex",
     justifyContent: "space-between",
     flexDirection: "row-reverse",
