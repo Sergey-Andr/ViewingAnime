@@ -39,7 +39,6 @@ export interface ISpecifyAnime {
         name: string;
     }[];
     average_episode_duration: number;
-    created_at: string;
     end_date: string;
     filmMaker: string;
     id: number;

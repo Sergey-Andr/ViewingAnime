@@ -10,6 +10,8 @@ import About from "./components/About";
 const Sidebar = () => {
     const { animeId } = useParams();
     const { data } = useGetCurrentAnimeQuery(animeId ? +animeId : null);
+
+    console.log(data);
     return (
         <Box sx={{ display: "flex" }}>
             <SidebarWrapper>

@@ -8,7 +8,7 @@ const AnimeDetailsHeader = () => {
     const { animeId } = useParams();
 
     const { data } = useGetCurrentAnimeQuery(animeId ? +animeId : null);
-    const startDate = data?.created_at.slice(0, 4) ?? "...";
+    const startDate = data?.start_date?.slice(0, 4) ?? "...";
     const endDate = data?.end_date?.slice(0, 4) ?? "...";
 
     return (

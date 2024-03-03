@@ -36,11 +36,13 @@ const About = () => {
                 <AboutItemContainer>
                     <GlobalTitle>Year</GlobalTitle>
                     <GlobalContent>
-                        {!data
+                        {!data?.start_date
                             ? "..."
-                            : data?.created_at?.slice(0, 4) +
-                                  " -- " +
-                                  data?.end_date?.slice(0, 4) ?? "current time"}
+                            : !data?.end_date
+                              ? data.start_date.slice(0, 4) + " -- current time"
+                              : data.start_date.slice(0, 4) +
+                                " -- " +
+                                data.end_date.slice(0, 4)}
                     </GlobalContent>
                 </AboutItemContainer>
 
