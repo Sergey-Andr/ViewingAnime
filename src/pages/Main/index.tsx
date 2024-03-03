@@ -1,19 +1,12 @@
 import { Box } from "@mui/material";
-import Header from "../../components/mainPage/Header";
+import Header from "../../layouts/Header";
 import Slider from "./components/Slider";
+import { Container } from "./ui/styled.ts";
 
 const MainPage = () => {
     return (
         <Box sx={{ height: "100vh", boxSizing: "border-box" }}>
-            <Box
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    height: "100%",
-                    position: "relative",
-                }}
-            >
+            <Container>
                 <Header />
                 <Box
                     sx={{
@@ -23,7 +16,7 @@ const MainPage = () => {
                 >
                     <Slider />
                 </Box>
-            </Box>
+            </Container>
         </Box>
     );
 };

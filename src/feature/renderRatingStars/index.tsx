@@ -11,6 +11,7 @@ export const renderRatingStars = (rating = 0) => {
         for (let i = 0; i < fullStars; i++) {
             stars.push(
                 <FaStar
+                    key={`fill-${i}`}
                     fill={"#ffcc00"}
                     style={{
                         width: "25px",
@@ -24,6 +25,7 @@ export const renderRatingStars = (rating = 0) => {
         if (hasHalfStar) {
             stars.push(
                 <FaRegStarHalfStroke
+                    key={`half-star`}
                     fill={"#ffcc00"}
                     style={{
                         width: "27px",
@@ -38,6 +40,7 @@ export const renderRatingStars = (rating = 0) => {
         for (let i = 0; i < remainingStars; i++) {
             stars.push(
                 <FaStar
+                    key={`empty-${i}`}
                     fill={"#FFFFFF99"}
                     style={{
                         width: "25px",
