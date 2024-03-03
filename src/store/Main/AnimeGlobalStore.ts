@@ -2,7 +2,7 @@ import { createWithEqualityFn } from "zustand/traditional";
 import { immer } from "zustand/middleware/immer";
 import { produce } from "immer";
 import { IListItem } from "../../types/listOfAnime.ts";
-import { ReactNode } from "react";
+import { ReactElement } from "react";
 import { renderAmontOfStars } from "../../feature/renderAmontOfStars";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -17,8 +17,8 @@ interface IAnimeGlobalStore {
     setOffset: () => void;
     ratingAnime: { [key: number]: number };
     setRatingAnime: (newKey: number, newValue: number) => void;
-    numberOfStars: ReactNode[];
-    setNumberOfStars: (newNumber: ReactNode[]) => void;
+    numberOfStars: ReactElement[];
+    setNumberOfStars: (newNumber: ReactElement[]) => void;
     animeStatus: { [key: number]: string };
     setAnimeStatus: (newKey: number, newValue: string) => void;
 }

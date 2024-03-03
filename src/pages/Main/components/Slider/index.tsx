@@ -13,7 +13,7 @@ import {
     Overview,
     Ratio,
     Title,
-} from "./styled.ts";
+} from "./ui/styled.ts";
 import { animeGlobalStore } from "../../../../store/Main/AnimeGlobalStore.ts";
 import { shallow } from "zustand/shallow";
 import { FaPlay } from "react-icons/fa6";
