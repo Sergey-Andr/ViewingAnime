@@ -8,7 +8,9 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 interface IAnimeGlobalStore {
     totalAnime: IListItem[];
-    setNewAnime: (newAnime: IListItem[]) => void;
+    setTotalAnime: (newAnime: IListItem[]) => void;
+    activeAnimeId: number | null;
+    setNewActiveId: (newId: number | null) => void;
     searchAnime: string;
     setSearchAnime: (newSearch: string) => void;
     offset: number;
@@ -26,7 +28,7 @@ export const animeGlobalStore = createWithEqualityFn<IAnimeGlobalStore>()(
         persist(
             (set) => ({
                 totalAnime: [],
-                setNewAnime: (newAnime) =>
+                setTotalAnime: (newAnime) =>
                     set(
                         produce((state) => {
                             if (newAnime) {
@@ -34,6 +36,10 @@ export const animeGlobalStore = createWithEqualityFn<IAnimeGlobalStore>()(
                             }
                         }),
                     ),
+
+                activeAnimeId: null,
+                setNewActiveId: (newId) => set({ activeAnimeId: newId }),
+
                 searchAnime: "",
                 setSearchAnime: (newSearch) => set({ searchAnime: newSearch }),
 

@@ -5,6 +5,7 @@ import { Autocomplete } from "@mui/material";
 import { SearchAnime } from "../../ui/styled.ts";
 import AnimeItem from "../AnimeItem";
 import { useState } from "react";
+import { FaXmark } from "react-icons/fa6";
 
 const SearchAnimeTab = () => {
     const { searchAnime, setSearchAnime } = animeGlobalStore(
@@ -26,10 +27,8 @@ const SearchAnimeTab = () => {
             freeSolo={true}
             disableCloseOnSelect={false}
             clearIcon={
-                <img
-                    src="../../../../../../public/cross.svg"
-                    alt="clear input icon"
-                    style={{ fill: "black" }}
+                <FaXmark
+                    style={{ fill: "#000", height: "20px", width: "20px" }}
                     onClick={() => {
                         setIsOpen(false);
                         setSearchAnime("");
@@ -46,7 +45,7 @@ const SearchAnimeTab = () => {
                         setSearchAnime(e.target.value);
                     }}
                     {...params}
-                    label="hent..."
+                    placeholder="hent..."
                 />
             )}
             renderOption={(_, option) => (

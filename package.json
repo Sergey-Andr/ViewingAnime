@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@mui/joy": "^5.0.0-beta.29",
     "@mui/material": "^5.15.5",
     "axios": "^1.6.7",
     "downshift": "^8.3.2",
@@ -28,10 +29,10 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.21.3",
-    "react-select": "^5.8.0",
     "react-slideshow-image": "^4.3.0",
     "shallow": "^1.0.0",
     "styled-components": "^6.1.8",
+    "swiper": "^11.0.7",
     "vite-plugin-svgr": "^4.2.0",
     "zustand": "^4.5.0"
   },
