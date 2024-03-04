@@ -7,8 +7,7 @@ export default {
             {
                 headers: {
                     "X-MAL-CLIENT-ID": import.meta.env.VITE_API_TOKEN,
-                    "Access-Control-Allow-Origin": import.meta.env
-                        .VITE_API_TOKEN,
+                    "Access-Control-Allow-Origin": "*",
                 },
             },
         ),
