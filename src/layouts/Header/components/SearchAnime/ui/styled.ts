@@ -16,7 +16,7 @@ export const SearchAnime = styled(TextField)(() => ({
             borderColor: "transparent",
         },
         "&.Mui-focused fieldset": {
-            borderColor: "rgba(255,255,255,0.2)",
+            borderColor: "#FFFFFF33",
             boxShadow: "0 0 10px rgb(0 0 0)",
         },
     },

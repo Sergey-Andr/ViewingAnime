@@ -57,8 +57,7 @@ const SearchAnimeTab = () => {
             )}
             ListboxProps={{
                 sx: {
-                    background:
-                        "linear-gradient(to bottom, rgba(17, 33, 46, 0.8) 0%, #11212e 400px),#0e6655",
+                    background: "#221F1F",
                 },
             }}
         />

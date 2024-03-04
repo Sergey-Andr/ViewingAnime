@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_API_HOST;
+
 const Api = axios.create({
-    baseURL: import.meta.env.VITE_LOCAL_API,
+    baseURL,
 });
 
 Api.interceptors.response.use(
@@ -10,6 +12,7 @@ Api.interceptors.response.use(
     },
     (error) => {
         return Promise.reject(error);
-    });
+    },
+);
 
 export default Api;
