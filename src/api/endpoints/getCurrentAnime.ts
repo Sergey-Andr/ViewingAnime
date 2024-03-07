@@ -7,5 +7,3 @@ export default {
             { headers: { "X-MAL-CLIENT-ID": import.meta.env.VITE_API_TOKEN } },
         ),
 };
-///anime/${animeId.queryKey[1]}?fields=id,title,synopsis,mean,main_picture
-//fields=id,title,main_picture,average_episode_duration,mean,start_date,filmMaker,genres,studios,synopsis,num_episodes,pictures,popularity
