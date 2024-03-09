@@ -8,7 +8,7 @@ import { DetailsContainer, DetailsWrapper } from "./ui/styled.ts";
 const AnimeDetailsPage = () => {
     return (
         <DetailsWrapper>
-            <Header />
+            <Header isMainPage={false} />
             <Box sx={{ display: "flex" }}>
                 <DetailsContainer>
                     <AnimeDetailsHeader />

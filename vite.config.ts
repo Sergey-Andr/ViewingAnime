@@ -5,6 +5,7 @@ import svgr from "vite-plugin-svgr";
 export default defineConfig({
     plugins: [react(), svgr({ include: "**/*.svg?react" })],
     server: {
+        port: 5143,
         proxy: {
             "/myanimelist": {
                 target: `https://api.myanimelist.net/v2`,
