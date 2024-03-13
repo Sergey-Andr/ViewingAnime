@@ -9,6 +9,10 @@ export const GlobalContent = styled(Typography)(() => ({
 }));
 
 export const GlobalStatusContent = styled(Typography)(() => ({
-    ...GlobalContent,
+    fontWeight: "500",
+    fontFamily: "sans-serif",
+    letterSpacing: "0.3px",
+    color: "#D7D7D7CC",
+
     fontSize: "16px",
 }));

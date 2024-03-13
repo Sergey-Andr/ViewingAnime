@@ -10,7 +10,13 @@ export const GlobalLabel = styled(Typography)(() => ({
 }));
 
 export const GlobalStatisticsLabel = styled(Typography)(() => ({
-    ...GlobalLabel,
+    fontWeight: "500",
+    fontFamily: "sans-serif",
+    fontSize: "22px",
+    padding: "10px 10px 5px 10px",
+    letterSpacing: "0.3px",
+    color: "#fff",
+    
     textAlign: "center",
     marginBottom: "10px",
 }));
